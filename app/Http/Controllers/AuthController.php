@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,9 +22,11 @@ class AuthController extends Controller
             ]);
         }
 
-        return response()->json([
-            'token'=> $user->createToken($request->email)->plainTextToken
-        ]);
+        return $this->success(
+            '',
+            ['token'=> $user->createToken($request->email)->plainTextToken]
+        );
+
     }
 
     public function  logout()
@@ -37,8 +40,13 @@ class AuthController extends Controller
 
     }
 
-    public function user(Request $request): UserResource
+    public function changePassword()
     {
-        return new UserResource($request->user());
+
+    }
+
+    public function user(Request $request)
+    {
+        return $this->response(new UserResource($request->user()));
     }
 }

@@ -6,6 +6,7 @@ use App\Models\UserAddress;
 use App\Http\Requests\StoreUserAddressRequest;
 use App\Http\Requests\UpdateUserAddressRequest;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 
 class UserAddressController extends Controller
 {
@@ -17,9 +18,9 @@ class UserAddressController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():Collection
+    public function index(): JsonResponse
     {
-       return auth()->user()->addresses;
+       return $this->response(auth()->user()->addresses);
     }
 
     /**
@@ -33,11 +34,11 @@ class UserAddressController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserAddressRequest $request)
+    public function store(StoreUserAddressRequest $request): JsonResponse
     {
 
-        auth()->user()->addresses()->create($request->toArray());
-        return true;
+        $address = auth()->user()->addresses()->create($request->toArray());
+        return $this->success('shipping address created', $address);
     }
 
     /**
