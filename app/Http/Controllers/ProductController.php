@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProductResource;
-use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-      return ProductResource::collection(Product::cursorPaginate(15));
+        return ProductResource::collection(Product::cursorPaginate(15));
     }
 
 
@@ -29,9 +29,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $product)
+    public function show($product)
     {
-        return  Product::with('stocks')->find($product);
+        return Product::with('stocks')->find($product);
     }
 
     /**
@@ -56,5 +56,16 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function related(Product $product)
+    {
+        return $this->response(
+            ProductResource::collection(
+                Product::query()
+                    ->where('category_id', $product->category_id)
+                    ->limit(15)
+                    ->get())
+        );
     }
 }

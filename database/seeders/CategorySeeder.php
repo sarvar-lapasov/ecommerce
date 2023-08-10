@@ -41,11 +41,46 @@ class CategorySeeder extends Seeder
            ]
         ]);
 
-        Category::create([
+        $category = Category::create([
            'name' => [
                'uz' => 'Kreslo',
                'en' => 'Armchair'
            ]
+        ]);
+
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Ofis',
+                'en' => 'Office'
+            ]
+        ]);
+
+      $childCategory = $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Gaming',
+                'en' => 'Gaming'
+            ]
+        ]);
+
+      $childCategory->childCategories()->create([
+            'name' => [
+                'uz' => 'RGB',
+                'en' => 'RGB'
+            ]
+        ]);
+
+      $childCategory->childCategories()->create([
+            'name' => [
+                'uz' => 'Women',
+                'en' => 'Women'
+            ]
+        ]);
+
+      $childCategory->childCategories()->create([
+            'name' => [
+                'uz' => 'Black',
+                'en' => 'Black'
+            ]
         ]);
     }
 }
