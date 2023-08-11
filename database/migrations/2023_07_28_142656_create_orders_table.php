@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('delivery_method_id')->constrained()->cascadeOnDelete();
             $table->foreignId('payment_type_id')->constrained()->cascadeOnDelete();
             $table->foreignId('status_id')->default(1)->constrained();
-            $table->unsignedBigInteger('sum');
+            $table->unsignedBigInteger('sum')->comment('Sum of order is stored in sum (not tiyin)');
             $table->json('address')->nullable();
             $table->json('products');
             $table->timestamps();
