@@ -47,6 +47,7 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
+//        return $request->user()->getAllPermissions();
         return $this->response(new UserResource($request->user()));
     }
 }

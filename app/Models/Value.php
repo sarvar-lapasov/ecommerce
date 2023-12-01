@@ -15,7 +15,7 @@ class Value extends Model
 
     protected $fillable = ["name"];
 
-    public array $translatable = ["name"];
+    public array $translatable = ["name"]; 
     public function valuable(): MorphTo
     {
         return $this->morphTo();

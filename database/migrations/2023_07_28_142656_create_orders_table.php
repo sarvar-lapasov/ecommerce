@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sum')->comment('Sum of order is stored in sum (not tiyin)');
             $table->json('address')->nullable();
             $table->json('products');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
