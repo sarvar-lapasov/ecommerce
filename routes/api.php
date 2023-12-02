@@ -7,14 +7,18 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentCardTypeController;
 use App\Http\Controllers\PaymentTypeController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductPhotoController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\StatusOrderController;
 use App\Http\Controllers\UserAddressController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPaymentCardsController;
+use App\Http\Controllers\UserPhotoController;
 use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +38,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('products/{product}/related', [ProductController::class, 'related']);
 
 Route::apiResources([
+    'users' => UserController::class,
+    'photos' => PhotoController::class,
     'orders' => OrderController::class,
     'reviews' => ReviewController::class,
     'statuses' => StatusController::class,
@@ -41,10 +47,12 @@ Route::apiResources([
     'settings' => SettingController::class,
     'favorites' => FavoriteController::class,
     'categories' => CategoryController::class,
+    'users.photos' => UserPhotoController::class,
     'user-settings' => UserSettingController::class,
     'payment-types' => PaymentTypeController::class,
     'user-addresses' => UserAddressController::class,
     'statuses.orders' => StatusOrderController::class,
+    'products.photos' => ProductPhotoController::class,
     'products.reviews' => ProductReviewController::class,
     'delivery-methods' => DeliveryMethodController::class,
     'payment-card-types' => PaymentCardTypeController::class,
