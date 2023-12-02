@@ -44,7 +44,7 @@ class ValueSeeder extends Seeder
             "name" => [
                 'uz' => 'MDF',
                 'en' => 'MDF.'
-            ]
+            ],
         ]);
 
         $attribute2->values()->create([

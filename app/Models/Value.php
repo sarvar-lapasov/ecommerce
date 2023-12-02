@@ -13,9 +13,9 @@ class Value extends Model
 {
     use HasFactory, HasTranslations;
 
-    protected $fillable = ["name"];
+    protected $fillable = ["name", "added_price"];
 
-    public array $translatable = ["name"]; 
+    public array $translatable = ["name"];
     public function valuable(): MorphTo
     {
         return $this->morphTo();
