@@ -42,6 +42,19 @@ Route::post('roles/assign', [RoleController::class, 'assign']);
 Route::post('permissions/assign', [PermissionController::class, 'assign']);
 Route::get('products/{product}/related', [ProductController::class, 'related']);
 
+Route::get('test', function (){
+   $order = \App\Models\Order::find(1);
+
+    $notification = ucfirst('confirmed');
+    $class = "\App\Notifications\Order\\" . $notification;
+
+//    dd(new $class($order));
+   $order->update(['status_id' => 2 ]);
+   dd($order->status_id);
+});
+
+
+
 Route::apiResources([
     'users' => UserController::class,
     'roles' => RoleController::class,
