@@ -31,7 +31,6 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-//        dd($request->toArray());
         $product = Product::create($request->toArray());
 
        return $this->success(data: new ProductResource($product));
