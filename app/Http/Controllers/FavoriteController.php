@@ -20,11 +20,16 @@ class FavoriteController extends Controller
 
     public function store(Request $request):JsonResponse
     {
+        if((auth()->user()->hasFavorites($request->product_id))){
+
+        return $this->error (
+             'Already added this product to favorite');
+        }
+
+
         auth()->user()->favorites()->attach($request->product_id);
 
-        return response()->json([
-            'success' => true,
-        ]);
+        return $this->success('added product to favorite');
     }
 
     /*
@@ -35,10 +40,10 @@ class FavoriteController extends Controller
         if(auth()->user()->hasFavorites($favorite_id)){
            auth()->user()->favorites()->detach($favorite_id);
 
-           return response()->json(['success' => true]);
+           return $this->success('delete product in favorite');
         }
 
 
-        return response()->json(['success' => false, 'message' => 'Favorite does not exist in this user']);
+        return $this->error('Favorite does not exist in this user');
     }
 }
